@@ -32,6 +32,46 @@
 		$file = $_FILES["file6"];
 	}
 
+	if(isset($_FILES["file7"]))
+	{
+		$file = $_FILES["file7"];
+	}
+
+	if(isset($_FILES["file8"]))
+	{
+		$file = $_FILES["file8"];
+	}
+
+	if(isset($_FILES["file9"]))
+	{
+		$file = $_FILES["file9"];
+	}
+
+	if(isset($_FILES["file10"]))
+	{
+		$file = $_FILES["file10"];
+	}
+
+	if(isset($_FILES["file11"]))
+	{
+		$file = $_FILES["file11"];
+	}
+
+	if(isset($_FILES["file12"]))
+	{
+		$file = $_FILES["file12"];
+	}
+
+	if(isset($_FILES["file13"]))
+	{
+		$file = $_FILES["file13"];
+	}
+
+	if(isset($_FILES["file14"]))
+	{
+		$file = $_FILES["file14"];
+	}
+
 
 	//SE SUBE EL ARCHIVO
 	if(isset($file))
@@ -44,8 +84,8 @@
 
 		if($tipo != 'application/pdf'){
 			echo "Error, el archivo debe ser pdf";
-		}else if($size> 1024*1024*2){
-			echo "Error, el tamaño m&aacute;ximo permitido es 1MB";
+		}else if($size> 1024*1024*8){
+			echo "Error, el tamaño m&aacute;ximo permitido es 8MB";
 		}else{
 			$src = $carpeta . $nombre;
 			move_uploaded_file($ruta_provisional, $src);
@@ -78,6 +118,38 @@
 	if(isset($_FILES["file6"]))
 	{
 		$sql = "UPDATE documentacion SET URL_6='$nombre', MOD_6=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+	}
+	if(isset($_FILES["file7"]))
+	{
+		$sql = "UPDATE documentacion SET URL_7='$nombre', MOD_7=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+	}
+	if(isset($_FILES["file8"]))
+	{
+		$sql = "UPDATE documentacion SET URL_8='$nombre', MOD_8=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+	}
+	if(isset($_FILES["file9"]))
+	{
+		$sql = "UPDATE documentacion SET URL_9='$nombre', MOD_9=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+	}
+	if(isset($_FILES["file10"]))
+	{
+		$sql = "UPDATE documentacion SET URL_10='$nombre', MOD_10=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+	}
+	if(isset($_FILES["file11"]))
+	{
+		$sql = "UPDATE documentacion SET URL_11='$nombre', MOD_11=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+	}
+	if(isset($_FILES["file12"]))
+	{
+		$sql = "UPDATE documentacion SET URL_12='$nombre', MOD_12=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+	}
+	if(isset($_FILES["file13"]))
+	{
+		$sql = "UPDATE documentacion SET URL_13='$nombre', MOD_13=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+	}
+	if(isset($_FILES["file14"]))
+	{
+		$sql = "UPDATE documentacion SET URL_14='$nombre', MOD_14=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
 	}
 
 

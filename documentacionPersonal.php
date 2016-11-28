@@ -16,7 +16,7 @@ if($_SESSION['nombreUsuario']){
 	    	$_SESSION['trabajadorActual'] = getRutTrabajador($id);
 	    	$_SESSION['idTrabajadorActual'] = $id;
 	    	$contenido = getVerDocumentacion($id);
-	    	list($url1,$val1,$obs1,$mod1,$url2,$val2,$obs2,$mod2,$url3,$val3,$obs3,$mod3,$url4,$val4,$obs4,$mod4,$url5,$val5,$obs5,$mod5,$url6,$val6,$obs6,$mod6) = explode("%$", $contenido);
+	    	list($url1,$val1,$obs1,$mod1,$url2,$val2,$obs2,$mod2,$url3,$val3,$obs3,$mod3,$url4,$val4,$obs4,$mod4,$url5,$val5,$obs5,$mod5,$url6,$val6,$obs6,$mod6,$url7,$val7,$obs7,$mod7,$url8,$val8,$obs8,$mod8,$url9,$val9,$obs9,$mod9,$url10,$val10,$obs10,$mod10,$url11,$val11,$obs11,$mod11,$url12,$val12,$obs12,$mod12,$url13,$val13,$obs13,$mod13,$url14,$val14,$obs14,$mod14) = explode("%$", $contenido);
 	    }
 	    ?>
 
@@ -78,7 +78,7 @@ if($_SESSION['nombreUsuario']){
 	            <div class="content-inner">
 	            	<div class="row comments-row">
 	            		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-		            		<div class="col-sm-12 col-md-12">
+		            		<div class="documento col-sm-12 col-md-12">
 		            			<div class="row">
 		            				<div class="col-xs-8 col-sm-8 col-md-8">
 		            					<b>Contrato de Trabajo</b><br>
@@ -119,10 +119,10 @@ if($_SESSION['nombreUsuario']){
 	            		</div>
 
 	            		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-		            		<div class="col-sm-12 col-md-12">
+		            		<div class="documento col-sm-12 col-md-12">
 		            			<div class="row">
 		            				<div class="col-xs-8 col-sm-8 col-md-8">
-		            					<b>Sueldo Base</b><br>
+		            					<b>Inducción JoyGlobal</b><br>
 		            					<small>Caduca el <?php echo $val2; ?></small>
 		            				</div>
 		            				<div class="col-xs-4 col-sm-4 col-md-4">
@@ -162,10 +162,10 @@ if($_SESSION['nombreUsuario']){
 	            	<div class="row comments-row">
 	            	
 	            		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-		            		<div class="col-sm-12 col-md-12">
+		            		<div class="documento col-sm-12 col-md-12">
 		            			<div class="row">
 		            				<div class="col-xs-8 col-sm-8 col-md-8">
-		            					<b>Gratificación Mensual</b><br>
+		            					<b>Fotografía tamaño carnet</b><br>
 		            					<small>Caduca el <?php echo $val3; ?></small>
 		            				</div>
 		            				<div class="col-xs-4 col-sm-4 col-md-4">
@@ -203,10 +203,10 @@ if($_SESSION['nombreUsuario']){
 	            		</div>
 
 	            		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-		            		<div class="col-sm-12 col-md-12">
+		            		<div class="documento col-sm-12 col-md-12">
 		            			<div class="row">
 		            				<div class="col-xs-8 col-sm-8 col-md-8">
-		            					<b>Revisión de Turnos</b><br>
+		            					<b>Consentimiento test alcohol y drogas</b><br>
 		            					<small>Caduca el <?php echo $val4; ?></small>
 		            				</div>
 		            				<div class="col-xs-4 col-sm-4 col-md-4">
@@ -246,10 +246,10 @@ if($_SESSION['nombreUsuario']){
 	            	<div class="row comments-row">
 	            	
 	            		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-		            		<div class="col-sm-12 col-md-12">
+		            		<div class="documento col-sm-12 col-md-12">
 		            			<div class="row">
 		            				<div class="col-xs-8 col-sm-8 col-md-8">
-		            					<b>Revisión de Tipos</b><br>
+		            					<b>Fotocopia Cédula</b><br>
 		            					<small>Caduca el <?php echo $val5; ?></small>
 		            				</div>
 		            				<div class="col-xs-4 col-sm-4 col-md-4">
@@ -287,10 +287,10 @@ if($_SESSION['nombreUsuario']){
 	            		</div>
 
 	            		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-		            		<div class="col-sm-12 col-md-12">
+		            		<div class="documento col-sm-12 col-md-12">
 		            			<div class="row">
 		            				<div class="col-xs-8 col-sm-8 col-md-8">
-		            					<b>Declaración Jurada</b><br>
+		            					<b>Examen Pre-Ocupacional</b><br>
 		            					<small>Caduca el <?php echo $val6; ?></small>
 		            				</div>
 		            				<div class="col-xs-4 col-sm-4 col-md-4">
@@ -328,11 +328,344 @@ if($_SESSION['nombreUsuario']){
 	            		</div>
 	            	</div>
 	            	<div class="row comments-row">
+	            		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+		            		<div class="documento col-sm-12 col-md-12">
+		            			<div class="row">
+		            				<div class="col-xs-8 col-sm-8 col-md-8">
+		            					<b>ODI</b><br>
+		            					<small>Caduca el <?php echo $val7; ?></small>
+		            				</div>
+		            				<div class="col-xs-4 col-sm-4 col-md-4">
+		            					<div class="clearfix">
+		            						<div class="pull-right comments-age"><small>Ultima Modificación: <br> <?php echo $mod7; ?></small></div>
+		            					</div>
+		            				</div>
+		            			</div>
+		            			<div class="well well-sm comments-well">
+				            		<textarea id="obs7" name="" style="width:100%;"><?php echo $obs7; ?></textarea>
+				            	</div>
+				            	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">	
+					            	<form method="post" id="formulario7" enctype="multipart/form-data">
+				                        <div class="form-group">
+				                          <label class="">
+				                          	<div id="respuesta7">            	
+				                          		<?php 
+				                          			echo "<a target='_blank' href='http://www.chilecop.cl/acreditacion/archivos/". $_SESSION['trabajadorActual'] . "/". $url7 ."'>" . $url7 . "</a>";
+				                          		?>
+				                          	</div>
+				                          </label>
+				                          <span class="btn btn-default btn-file">                            
+				                            Subir Archivo <input type="file" name="file7">
+				                          </span>
+				                        </div>
+				                    </form>
+			                    </div>
+			                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			                    	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			                    		<label class="">Caduca:</label>
+			                    		<input id="val7" type="date" name="fecha_doc1" value="<?php echo $val7; ?>">	
+			                    	</div>	                    	
+			                    </div>
+		            		</div>
+	            		</div>
+	            		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+		            		<div class="documento col-sm-12 col-md-12">
+		            			<div class="row">
+		            				<div class="col-xs-8 col-sm-8 col-md-8">
+		            					<b>Reglamento Interno</b><br>
+		            					<small>Caduca el <?php echo $val8; ?></small>
+		            				</div>
+		            				<div class="col-xs-4 col-sm-4 col-md-4">
+		            					<div class="clearfix">
+		            						<div class="pull-right comments-age"><small>Ultima Modificación: <br> <?php echo $mod8; ?></small></div>
+		            					</div>
+		            				</div>
+		            			</div>
+		            			<div class="well well-sm comments-well">
+				            		<textarea id="obs8" name="" style="width:100%;"><?php echo $obs8; ?></textarea>
+				            	</div>
+				            	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">	
+					            	<form method="post" id="formulario8" enctype="multipart/form-data">
+				                        <div class="form-group">
+				                          <label class="">
+				                          	<div id="respuesta8">            	
+				                          		<?php 
+				                          			echo "<a target='_blank' href='http://www.chilecop.cl/acreditacion/archivos/". $_SESSION['trabajadorActual'] . "/". $url8 ."'>" . $url8 . "</a>";
+				                          		?>
+				                          	</div>
+				                          </label>
+				                          <span class="btn btn-default btn-file">                            
+				                            Subir Archivo <input type="file" name="file8">
+				                          </span>
+				                        </div>
+				                    </form>
+			                    </div>
+			                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			                    	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			                    		<label class="">Caduca:</label>
+			                    		<input id="val8" type="date" name="fecha_doc1" value="<?php echo $val8; ?>">	
+			                    	</div>	                    	
+			                    </div>
+		            		</div>
+	            		</div>
+	            	</div>
+	            	<div class="row comments-row">
+	            		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+		            		<div class="documento col-sm-12 col-md-12">
+		            			<div class="row">
+		            				<div class="col-xs-8 col-sm-8 col-md-8">
+		            					<b>Entrega EPP</b><br>
+		            					<small>Caduca el <?php echo $val9; ?></small>
+		            				</div>
+		            				<div class="col-xs-4 col-sm-4 col-md-4">
+		            					<div class="clearfix">
+		            						<div class="pull-right comments-age"><small>Ultima Modificación: <br> <?php echo $mod9; ?></small></div>
+		            					</div>
+		            				</div>
+		            			</div>
+		            			<div class="well well-sm comments-well">
+				            		<textarea id="obs9" name="" style="width:100%;"><?php echo $obs9; ?></textarea>
+				            	</div>
+				            	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">	
+					            	<form method="post" id="formulario9" enctype="multipart/form-data">
+				                        <div class="form-group">
+				                          <label class="">
+				                          	<div id="respuesta9">            	
+				                          		<?php 
+				                          			echo "<a target='_blank' href='http://www.chilecop.cl/acreditacion/archivos/". $_SESSION['trabajadorActual'] . "/". $url9 ."'>" . $url9 . "</a>";
+				                          		?>
+				                          	</div>
+				                          </label>
+				                          <span class="btn btn-default btn-file">                            
+				                            Subir Archivo <input type="file" name="file9">
+				                          </span>
+				                        </div>
+				                    </form>
+			                    </div>
+			                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			                    	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			                    		<label class="">Caduca:</label>
+			                    		<input id="val9" type="date" name="fecha_doc1" value="<?php echo $val9; ?>">	
+			                    	</div>	                    	
+			                    </div>
+		            		</div>
+	            		</div>
+
+	            		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+		            		<div class="documento col-sm-12 col-md-12">
+		            			<div class="row">
+		            				<div class="col-xs-8 col-sm-8 col-md-8">
+		            					<b>Último Finiquito</b><br>
+		            					<small>Caduca el <?php echo $val10; ?></small>
+		            				</div>
+		            				<div class="col-xs-4 col-sm-4 col-md-4">
+		            					<div class="clearfix">
+		            						<div class="pull-right comments-age"><small>Ultima Modificación: <br> <?php echo $mod10; ?></small></div>
+		            					</div>
+		            				</div>
+		            			</div>
+		            			<div class="well well-sm comments-well">
+				            		<textarea id="obs10" name="" style="width:100%;"><?php echo $obs10; ?></textarea>
+				            	</div>
+				            	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">	
+					            	<form method="post" id="formulario10" enctype="multipart/form-data">
+				                        <div class="form-group">
+				                          <label class="">
+				                          	<div id="respuesta10">            	
+				                          		<?php 
+				                          			echo "<a target='_blank' href='http://www.chilecop.cl/acreditacion/archivos/". $_SESSION['trabajadorActual'] . "/". $url10 ."'>" . $url10 . "</a>";
+				                          		?>
+				                          	</div>
+				                          </label>
+				                          <span class="btn btn-default btn-file">                            
+				                            Subir Archivo <input type="file" name="file10">
+				                          </span>
+				                        </div>
+				                    </form>
+			                    </div>
+			                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			                    	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			                    		<label class="">Caduca:</label>
+			                    		<input id="val10" type="date" name="fecha_doc1" value="<?php echo $val10; ?>">	
+			                    	</div>	                    	
+			                    </div>
+		            		</div>
+	            		</div>
+	            	</div>
+	            	<div class="row comments-row">
+	            		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+		            		<div class="documento col-sm-12 col-md-12">
+		            			<div class="row">
+		            				<div class="col-xs-8 col-sm-8 col-md-8">
+		            					<b>Certificado Antecedentes</b><br>
+		            					<small>Caduca el <?php echo $val11; ?></small>
+		            				</div>
+		            				<div class="col-xs-4 col-sm-4 col-md-4">
+		            					<div class="clearfix">
+		            						<div class="pull-right comments-age"><small>Ultima Modificación: <br> <?php echo $mod11; ?></small></div>
+		            					</div>
+		            				</div>
+		            			</div>
+		            			<div class="well well-sm comments-well">
+				            		<textarea id="obs11" name="" style="width:100%;"><?php echo $obs11; ?></textarea>
+				            	</div>
+				            	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">	
+					            	<form method="post" id="formulario11" enctype="multipart/form-data">
+				                        <div class="form-group">
+				                          <label class="">
+				                          	<div id="respuesta11">            	
+				                          		<?php 
+				                          			echo "<a target='_blank' href='http://www.chilecop.cl/acreditacion/archivos/". $_SESSION['trabajadorActual'] . "/". $url11 ."'>" . $url11 . "</a>";
+				                          		?>
+				                          	</div>
+				                          </label>
+				                          <span class="btn btn-default btn-file">                            
+				                            Subir Archivo <input type="file" name="file11">
+				                          </span>
+				                        </div>
+				                    </form>
+			                    </div>
+			                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			                    	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			                    		<label class="">Caduca:</label>
+			                    		<input id="val11" type="date" name="fecha_doc1" value="<?php echo $val11; ?>">	
+			                    	</div>	                    	
+			                    </div>
+		            		</div>
+	            		</div>
+
+	            		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+		            		<div class="documento col-sm-12 col-md-12">
+		            			<div class="row">
+		            				<div class="col-xs-8 col-sm-8 col-md-8">
+		            					<b>Certificado de Estudios</b><br>
+		            					<small>Caduca el <?php echo $val12; ?></small>
+		            				</div>
+		            				<div class="col-xs-4 col-sm-4 col-md-4">
+		            					<div class="clearfix">
+		            						<div class="pull-right comments-age"><small>Ultima Modificación: <br> <?php echo $mod12; ?></small></div>
+		            					</div>
+		            				</div>
+		            			</div>
+		            			<div class="well well-sm comments-well">
+				            		<textarea id="obs12" name="" style="width:100%;"><?php echo $obs12; ?></textarea>
+				            	</div>
+				            	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">	
+					            	<form method="post" id="formulario12" enctype="multipart/form-data">
+				                        <div class="form-group">
+				                          <label class="">
+				                          	<div id="respuesta12">            	
+				                          		<?php 
+				                          			echo "<a target='_blank' href='http://www.chilecop.cl/acreditacion/archivos/". $_SESSION['trabajadorActual'] . "/". $url12 ."'>" . $url12 . "</a>";
+				                          		?>
+				                          	</div>
+				                          </label>
+				                          <span class="btn btn-default btn-file">                            
+				                            Subir Archivo <input type="file" name="file12">
+				                          </span>
+				                        </div>
+				                    </form>
+			                    </div>
+			                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			                    	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			                    		<label class="">Caduca:</label>
+			                    		<input id="val12" type="date" name="fecha_doc1" value="<?php echo $val12; ?>">	
+			                    	</div>	                    	
+			                    </div>
+		            		</div>
+	            		</div>
+	            	</div>
+	            	<div class="row comments-row">
+	            		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+		            		<div class="documento col-sm-12 col-md-12">
+		            			<div class="row">
+		            				<div class="col-xs-8 col-sm-8 col-md-8">
+		            					<b>Acreditación Prevencionista</b><br>
+		            					<small>Caduca el <?php echo $val13; ?></small>
+		            				</div>
+		            				<div class="col-xs-4 col-sm-4 col-md-4">
+		            					<div class="clearfix">
+		            						<div class="pull-right comments-age"><small>Ultima Modificación: <br> <?php echo $mod13; ?></small></div>
+		            					</div>
+		            				</div>
+		            			</div>
+		            			<div class="well well-sm comments-well">
+				            		<textarea id="obs13" name="" style="width:100%;"><?php echo $obs13; ?></textarea>
+				            	</div>
+				            	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">	
+					            	<form method="post" id="formulario13" enctype="multipart/form-data">
+				                        <div class="form-group">
+				                          <label class="">
+				                          	<div id="respuesta13">            	
+				                          		<?php 
+				                          			echo "<a target='_blank' href='http://www.chilecop.cl/acreditacion/archivos/". $_SESSION['trabajadorActual'] . "/". $url13 ."'>" . $url13 . "</a>";
+				                          		?>
+				                          	</div>
+				                          </label>
+				                          <span class="btn btn-default btn-file">                            
+				                            Subir Archivo <input type="file" name="file13">
+				                          </span>
+				                        </div>
+				                    </form>
+			                    </div>
+			                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			                    	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			                    		<label class="">Caduca:</label>
+			                    		<input id="val13" type="date" name="fecha_doc1" value="<?php echo $val13; ?>">	
+			                    	</div>	                    	
+			                    </div>
+		            		</div>
+	            		</div>
+
+	            		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+		            		<div class="documento col-sm-12 col-md-12">
+		            			<div class="row">
+		            				<div class="col-xs-8 col-sm-8 col-md-8">
+		            					<b>Certificado de Aprobación</b><br>
+		            					<small>Caduca el <?php echo $val14; ?></small>
+		            				</div>
+		            				<div class="col-xs-4 col-sm-4 col-md-4">
+		            					<div class="clearfix">
+		            						<div class="pull-right comments-age"><small>Ultima Modificación: <br> <?php echo $mod14; ?></small></div>
+		            					</div>
+		            				</div>
+		            			</div>
+		            			<div class="well well-sm comments-well">
+				            		<textarea id="obs14" name="" style="width:100%;"><?php echo $obs14; ?></textarea>
+				            	</div>
+				            	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">	
+					            	<form method="post" id="formulario14" enctype="multipart/form-data">
+				                        <div class="form-group">
+				                          <label class="">
+				                          	<div id="respuesta14">            	
+				                          		<?php 
+				                          			echo "<a target='_blank' href='http://www.chilecop.cl/acreditacion/archivos/". $_SESSION['trabajadorActual'] . "/". $url14 ."'>" . $url14 . "</a>";
+				                          		?>
+				                          	</div>
+				                          </label>
+				                          <span class="btn btn-default btn-file">                            
+				                            Subir Archivo <input type="file" name="file14">
+				                          </span>
+				                        </div>
+				                    </form>
+			                    </div>
+			                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			                    	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			                    		<label class="">Caduca:</label>
+			                    		<input id="val14" type="date" name="fecha_doc1" value="<?php echo $val14; ?>">	
+			                    	</div>	                    	
+			                    </div>
+		            		</div>
+	            		</div>
+	            	</div>
+
+	            </div>
+	            	<div class="row">
 	            		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	            			<button id="guardarDocs" type="submit" class="btn btn-primary pull-right">Guardar Documentación</button>
 	            		</div>
 	            	</div>
-	          </div>
+	          	</div>
 
 	          <div class="row">
 	            <footer id="admin-footer" class="clearfix">

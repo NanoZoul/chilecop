@@ -57,7 +57,7 @@
                   <span class="hidden-sm hidden-xs">Anuncios</span>
               </a>
             </li>
-            <h1 class="hidden-xs hidden-sm logo"><img src="images/logoCopec.png"></h1>
+            <h1 class="hidden-xs hidden-sm logo"><img src="images/joyglobal.png"></h1>
           </ul>
       </div>';
     }
@@ -103,7 +103,7 @@
                   <span class="hidden-sm hidden-xs">Reportes</span>
               </a>
             </li>
-            <h1 class="hidden-xs hidden-sm logo"><img src="images/logoCopec.png"></h1>
+            <h1 class="hidden-xs hidden-sm logo"><img src="images/joyglobal.png"></h1>
           </ul>
       </div>
 
@@ -190,7 +190,7 @@
                   <span class="hidden-sm hidden-xs">Reportes</span>
               </a>
             </li>
-            <h1 class="hidden-xs hidden-sm logo"><img src="images/logoCopec.png"></h1>
+            <h1 class="hidden-xs hidden-sm logo"><img src="images/joyglobal.png"></h1>
           </ul>
       </div>';
     }
@@ -307,7 +307,7 @@
     mysql_close($con);
   }
 
-  function listarContratistas(){
+ function listarContratistas(){
     $usuario = $_SESSION['nombreUsuario'];
     $con = conectarse();
     mysql_set_charset("utf8",$con);
@@ -324,17 +324,12 @@
               <td>".$row['REP'] . "</td>
               <td>".$row['MAIL_CONTACTO'] . "</td>
               <td>".$row['F_REGISTRO'] . "</td>";
-                echo "<td><a class='btn btn-xs btn-success' href='verContratista.php?id=".$row['ID_CONTRATISTA'] . "' role='button'>Ver</a></td>";
-              if($usuario=="Admin"){
-                echo "<td><a class='btn btn-xs btn-success' href='crearUsuario.php' role='button'>Crear Usuario</a></td>";
-              }
-
+              echo "<td><a class='btn btn-xs btn-success' href='verContratista.php?id=".$row['ID_CONTRATISTA'] . "' role='button'>Ver</a></td>";
               echo "<td><a class='btn btn-xs btn-default' href='listarContratos.php?id=".$row['ID_CONTRATISTA'] . "' role='button'>Contratos</a></td>";
-
+			  echo" <td><a class='btn btn-xs btn-default' href='documentacionEmpresa.php?id=".$row['ID_CONTRATISTA']."' role='button'>Documentos Empresa</a></td>";
               if($usuario=="Admin"){
-                echo "<td><a class='btn btn-xs btn-default' href='#' role='button'>Observaciones</a></td>";
-              
-                echo "<td><a class='btn btn-xs btn-warning' href='editarContratista.php?id=".$row['ID_CONTRATISTA']."&nombre=". $row['N_FANTASIA'] ."' role='button'>editar</a></td>";
+			 
+			  echo "<td><a class='btn btn-xs btn-warning' href='editarContratista.php?id=".$row['ID_CONTRATISTA']."&nombre=". $row['N_FANTASIA'] ."' role='button'>editar</a></td>";
               }
           echo "</tr>";
     }
@@ -388,7 +383,17 @@
     $resultado = mysql_query($query, $con);
     $fila = mysql_fetch_array($resultado);
     mysql_close($con);
-    return $fila['URL_1'] . "%$" . $fila['VAL_1'] . "%$" . $fila['OBS_1'] . "%$" . $fila['MOD_1'] . "%$" . $fila['URL_2'] . "%$" . $fila['VAL_2'] . "%$" . $fila['OBS_2'] . "%$" . $fila['MOD_2'] . "%$" . $fila['URL_3'] . "%$" . $fila['VAL_3'] . "%$" . $fila['OBS_3'] . "%$" . $fila['MOD_3'] . "%$" . $fila['URL_4'] . "%$" . $fila['VAL_4'] . "%$" . $fila['OBS_4'] . "%$" . $fila['MOD_4'] . "%$" . $fila['URL_5'] . "%$" . $fila['VAL_5'] . "%$" . $fila['OBS_5'] . "%$" . $fila['MOD_5'] . "%$" . $fila['URL_6'] . "%$" . $fila['VAL_6'] . "%$" . $fila['OBS_6'] . "%$" . $fila['MOD_6'];
+    return $fila['URL_1'] . "%$" . $fila['VAL_1'] . "%$" . $fila['OBS_1'] . "%$" . $fila['MOD_1'] . "%$" . $fila['URL_2'] . "%$" . $fila['VAL_2'] . "%$" . $fila['OBS_2'] . "%$" . $fila['MOD_2'] . "%$" . $fila['URL_3'] . "%$" . $fila['VAL_3'] . "%$" . $fila['OBS_3'] . "%$" . $fila['MOD_3'] . "%$" . $fila['URL_4'] . "%$" . $fila['VAL_4'] . "%$" . $fila['OBS_4'] . "%$" . $fila['MOD_4'] . "%$" . $fila['URL_5'] . "%$" . $fila['VAL_5'] . "%$" . $fila['OBS_5'] . "%$" . $fila['MOD_5'] . "%$" . $fila['URL_6'] . "%$" . $fila['VAL_6'] . "%$" . $fila['OBS_6'] . "%$" . $fila['MOD_6'] . "%$" . $fila['URL_7'] . "%$" . $fila['VAL_7'] . "%$" . $fila['OBS_7'] . "%$" . $fila['MOD_7'] . "%$" . $fila['URL_8'] . "%$" . $fila['VAL_8'] . "%$" . $fila['OBS_8'] . "%$" . $fila['MOD_8'] . "%$" . $fila['URL_9'] . "%$" . $fila['VAL_9'] . "%$" . $fila['OBS_9'] . "%$" . $fila['MOD_9'] . "%$" . $fila['URL_10'] . "%$" . $fila['VAL_10'] . "%$" . $fila['OBS_10'] . "%$" . $fila['MOD_10'] . "%$" . $fila['URL_11'] . "%$" . $fila['VAL_11'] . "%$" . $fila['OBS_11'] . "%$" . $fila['MOD_11'] . "%$" . $fila['URL_12'] . "%$" . $fila['VAL_12'] . "%$" . $fila['OBS_12'] . "%$" . $fila['MOD_12'] . "%$" . $fila['URL_13'] . "%$" . $fila['VAL_13'] . "%$" . $fila['OBS_13'] . "%$" . $fila['MOD_13'] . "%$" . $fila['URL_14'] . "%$" . $fila['VAL_14'] . "%$" . $fila['OBS_14'] . "%$" . $fila['MOD_14'];
+  }
+  
+  	function getVerDocEECC($id){
+    $con = conectarse();
+    mysql_set_charset("utf8",$con);
+    $query = "SELECT * FROM documentacion_contratista WHERE ID_CONTRATISTA='$id'";
+    $resultado = mysql_query($query, $con);
+    $fila = mysql_fetch_array($resultado);
+    mysql_close($con);
+    return $fila['URL1'] . "%$" . $fila['VAL1'] . "%$" . $fila['MOD1'] . "%$" . $fila['URL2'] . "%$" . $fila['VAL2'] . "%$" . $fila['MOD2'] . "%$" . $fila['URL3'] . "%$" . $fila['VAL3'] .  "%$" . $fila['MOD3'] . "%$" . $fila['URL4'] . "%$" . $fila['VAL4'] . "%$" . $fila['MOD4'] . "%$" . $fila['URL5'] . "%$" . $fila['VAL5'] . "%$" . $fila['MOD5'] . "%$" . $fila['URL6'] . "%$" . $fila['VAL6'] . "%$" . $fila['MOD6'] . "%$" . $fila['URL7'] . "%$" . $fila['VAL7'] . "%$" . $fila['MOD7'] . "%$" . $fila['URL8'] . "%$" . $fila['VAL8'] . "%$" . $fila['MOD8'] . "%$" . $fila['URL9'] . "%$" . $fila['VAL9'] . "%$" . $fila['MOD9'] . "%$" . $fila['URL10'] . "%$" . $fila['VAL10'] . "%$" . $fila['MOD10'];
   }
 
   function getVehiculos(){
@@ -459,6 +464,15 @@
   function getRutTrabajador($id){
     $con = conectarse();
     $sql = "SELECT RUT FROM personal_acreditado WHERE ID_ACREDITADO='$id'";
+    mysql_set_charset("utf8",$con);
+    $resultado = mysql_query($sql,$con);
+    $fila = mysql_fetch_array($resultado);
+    return $fila['RUT'];
+  }
+  
+   function getRutEmpresa($id){
+    $con = conectarse();
+    $sql = "SELECT RUT FROM empresa_contratista WHERE ID_CONTRATISTA='$id'";
     mysql_set_charset("utf8",$con);
     $resultado = mysql_query($sql,$con);
     $fila = mysql_fetch_array($resultado);

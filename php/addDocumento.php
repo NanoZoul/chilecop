@@ -28,7 +28,7 @@
 
 		if($tipo != 'application/pdf'){
 			echo "Error, el archivo no es un archivo pdf";
-		}else if($size> 1024*1024*2){
+		}else if($size> 1024*1024*8){
 			echo "Error, el tamaño m&aacute;ximo permitido es 1MB";
 		}else{
 			$src = $carpeta . $nombre;
