@@ -82,9 +82,10 @@
 		$size = $file["size"];
 		$carpeta = "../archivos/" . $_SESSION['trabajadorActual'] . "/";
 
-		if($tipo != 'application/pdf'){
+		/*if($tipo != 'application/pdf'){
 			echo "Error, el archivo debe ser pdf";
-		}else if($size> 1024*1024*8){
+		}else */
+		if($size> 1024*1024*8){
 			echo "Error, el tamaño m&aacute;ximo permitido es 8MB";
 		}else{
 			$src = $carpeta . $nombre;
@@ -98,58 +99,72 @@
 	if(isset($_FILES["file"]))
 	{
 		$sql = "UPDATE documentacion SET URL_1='$nombre', MOD_1=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+		$_SESSION['doc1Refresh']="Contrato de Trabajo";
 	}
 	if(isset($_FILES["file2"]))
 	{
 		$sql = "UPDATE documentacion SET URL_2='$nombre', MOD_2=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+		$_SESSION['doc2Refresh']="Inducción JoyGlobal";
 	}
 	if(isset($_FILES["file3"]))
 	{
 		$sql = "UPDATE documentacion SET URL_3='$nombre', MOD_3=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+		$_SESSION['doc3Refresh']="Fotografía Carnet";
 	}
 	if(isset($_FILES["file4"]))
 	{
 		$sql = "UPDATE documentacion SET URL_4='$nombre', MOD_4=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+		$_SESSION['doc4Refresh']="Consentimiento Test Alcohol y Drogas";
 	}
 	if(isset($_FILES["file5"]))
 	{
 		$sql = "UPDATE documentacion SET URL_5='$nombre', MOD_5=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+		$_SESSION['doc5Refresh']="Fotocopia Cédula";
 	}
 	if(isset($_FILES["file6"]))
 	{
 		$sql = "UPDATE documentacion SET URL_6='$nombre', MOD_6=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+		$_SESSION['doc6Refresh']="Examen Pre-Ocupacional";
 	}
 	if(isset($_FILES["file7"]))
 	{
 		$sql = "UPDATE documentacion SET URL_7='$nombre', MOD_7=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+		$_SESSION['doc7Refresh']="ODI";
 	}
 	if(isset($_FILES["file8"]))
 	{
 		$sql = "UPDATE documentacion SET URL_8='$nombre', MOD_8=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+		$_SESSION['doc8Refresh']="Reglamento Interno";
 	}
 	if(isset($_FILES["file9"]))
 	{
 		$sql = "UPDATE documentacion SET URL_9='$nombre', MOD_9=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+		$_SESSION['doc9Refresh']="Entrega EPP";
 	}
 	if(isset($_FILES["file10"]))
 	{
 		$sql = "UPDATE documentacion SET URL_10='$nombre', MOD_10=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+		$_SESSION['doc10Refresh']="Último Finiquito";
 	}
 	if(isset($_FILES["file11"]))
 	{
 		$sql = "UPDATE documentacion SET URL_11='$nombre', MOD_11=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+		$_SESSION['doc11Refresh']="Certificado Antecedentes";
 	}
 	if(isset($_FILES["file12"]))
 	{
 		$sql = "UPDATE documentacion SET URL_12='$nombre', MOD_12=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+		$_SESSION['doc12Refresh']="Certificado Estudios";
 	}
 	if(isset($_FILES["file13"]))
 	{
 		$sql = "UPDATE documentacion SET URL_13='$nombre', MOD_13=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+		$_SESSION['doc13Refresh']="Acreditación Prevencionista";
 	}
 	if(isset($_FILES["file14"]))
 	{
 		$sql = "UPDATE documentacion SET URL_14='$nombre', MOD_14=CURRENT_TIMESTAMP() WHERE ID_ACREDITADO='$id'";
+		$_SESSION['doc14Refresh']="Certificado Aprobación";
 	}
 
 

@@ -11,6 +11,9 @@ if($_SESSION['nombreUsuario']){
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <?php 
     include('php/consultasAcreditacion.php');
+	 if(isset($_GET['id'])){
+      $id = $_GET['id'];
+    }
     tituloPanel();?>
 
     <!-- Bootstrap -->
@@ -108,8 +111,8 @@ if($_SESSION['nombreUsuario']){
             </header>
             <div class="content-inner">
               <div class="form-wrapper">              
-                <form action="php/ingresarMandante.php" method="post">
-                  <div class="content-inner cuadroN2">
+                <form action="php/addOrdenContrato.php" method="post">
+                  <!--<div class="content-inner cuadroN2">
                     <div class="row">
                       <p>Seleccione el tipo de empresa para la cual entrega servicios.</p>
                       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -123,8 +126,9 @@ if($_SESSION['nombreUsuario']){
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div>-->
                   <p>Ingrese cada uno de los datos para agregar la orden de contrato. Todos los datos son requeridos.</p><br>
+                   <input type="hidden" name="idcontratista" value="<?php echo $id; ?>">
                   <div class="row">
                     <div class="col-md-4 col-lg-4">                      
                       <div class="form-group">
@@ -143,41 +147,14 @@ if($_SESSION['nombreUsuario']){
                         <label class="">Término Jornada</label>
                         <input class="pull-right" type="date" name="terminojornada" value="<?php echo date('Y-m-d'); ?>" placeholder="Fecha Termino" required/>
                       </div>
-                      <form method="post" id="formulario" enctype="multipart/form-data">
-                        <div class="form-group">
-                          <label class="">Archivo Jornada</label>
-                          <span class="btn btn-default btn-file pull-right">
-                            Subir Archivo <input type="file" name="file">
-                          </span>
-                          <div id="respuesta">respuesta</div>
-                        </div>
-                      </form>
                       <div class="form-group">
                         <label class="">Emisión Sernageomín</label>
                         <input class="pull-right" type="date" name="sernageomin" value="<?php echo date('Y-m-d'); ?>" placeholder="Fecha Sernageomín" required/>
-                      </div>
-                      <form method="post" id="formulario" enctype="multipart/form-data">
-                        <div class="form-group">
-                          <label class="">Archivo Sernageomín</label>
-                          <span class="btn btn-default btn-file pull-right">                            
-                            Subir Archivo <input type="file" name="file">
-                          </span>
-                          <div id="respuesta"></div>
-                        </div>
-                      </form>
+                      </div> 
                       <div class="form-group">
                         <label class="">Afiliación Mutual</label>
                         <input class="pull-right" type="date" name="fechamutual" value="<?php echo date('Y-m-d'); ?>" placeholder="Afiliación Mutual" required/>
                       </div> 
-                      <form method="post" id="formulario" enctype="multipart/form-data">
-                        <div class="form-group">
-                          <label class="">Archivo Mutual</label>
-                          <span class="btn btn-default btn-file pull-right">
-                            Subir Archivo <input type="file" name="file">
-                          </span>
-                          <div id="respuesta"></div>
-                        </div>
-                      </form>
                     </div>
                     <div class="col-md-4 col-lg-4">
                       <div class="form-group">

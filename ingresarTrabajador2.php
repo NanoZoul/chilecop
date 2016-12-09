@@ -31,23 +31,27 @@ if($_SESSION['nombreUsuario']){
     <script>
       function llenarContratos()
       {
-        var empresaId = document.getElementById("empresa").value;
+        var empresaSelect = document.getElementById("empresa");
         var contratos = document.getElementById("contratos");
-
-        $.ajax({
-          data: {empresaId},
-          type: "GET",
-          datatype: "json",
-          url: "php/getContratos.php",
-          success: function(response)
-          {
-            var contratosRecibidos = JSON.parse(response);
-            for (var i = 0; i < contratosRecibidos.length; i++)
+        var seleccionada = empresaSelect.options[empresaSelect.selectedIndex].value
+        if(seleccionada!=0){
+          $.ajax({
+            data: {'empresa':seleccionada},
+            type: "POST",
+            datatype: "json",
+            url: "php/getContratos.php",
+            success: function(response)
             {
-              contratos.options[i] = new Option(contratosRecibidos[i].numero,contratosRecibidos[i].id);
+              var contratosRecibidos = JSON.parse(response);
+              for (var i = 0; i < contratosRecibidos.length; i++)
+              {
+                contratos.options[i] = new Option(contratosRecibidos[i].numero,contratosRecibidos[i].id);
+              }
             }
-          }
-        });
+          });
+        }else{
+          contratos.options[0] = new Option("Seleccionar Empresa...",0);
+        }
       }  
     </script>
   </head>
@@ -100,9 +104,11 @@ if($_SESSION['nombreUsuario']){
                       </div>
                       <div class="form-group">
                         <label class="">Contrato</label>
-                        <select name="idcontrato" id="contratos"></select>
+                        <select name="idcontrato" id="contratos" required>
+                          <option value="">Seleccionar Empresa...</option>
+                        </select>
                       </div>
-                      <div class="form-group">
+                       <div class="form-group">
                         <label class="sr-only">Rut</label>
                         <input type="text" class="form-control" id="title" placeholder="Rut" name="rut" required>
                       </div>
@@ -128,13 +134,13 @@ if($_SESSION['nombreUsuario']){
                         <input type="text" class="form-control" id="title" placeholder="Nacionalidad" name="nacionalidad" required>
                       </div>
                       <div class="form-group">
-                        <label class="sr-only">Visa</label>
-                        <input type="text" class="form-control" id="title" placeholder="Visa" name="visa">
+                        <label>Tipo de Visa</label>
+                        <?php getSelect(visa,id_visa,descripcion); ?>
                       </div>  
                       <div class="form-group">
-                        <label class="sr-only">Procedencia</label>
-                        <input type="text" class="form-control" id="title" placeholder="Procedencia" name="procedencia">
-                      </div>                                          
+                        <label class="">Fecha Vencimiento de Visa (si aplica)</label>
+                        <input type="date" class="form-control" id="title" name="fVencVisa">
+                      </div>                                           
                     </div>
                     <div class="col-md-4 col-lg-4">   
                       <div class="form-group">
@@ -146,32 +152,57 @@ if($_SESSION['nombreUsuario']){
                         <input type="text" class="form-control" id="title" placeholder="Dirección" name="direccion" required>
                       </div>
                       <div class="form-group">
-                        <label class="sr-only">Fono</label>
-                        <input type="text" class="form-control" id="title" placeholder="Fono" name="fono" required>
+                        <label>Region</label>
+                        <?php getSelect(regiones,region_id,region_nombre); ?>
                       </div>
                       <div class="form-group">
-                        <label class="sr-only">Contacto</label>
-                        <input type="text" class="form-control" id="title" placeholder="Contacto" name="contacto">
-                      </div>    
+                        <label class="sr-only">Ciudad</label>
+                        <input type="text" class="form-control" id="title" placeholder="Ciudad" name="procedencia">
+                      </div> 
+                      <div class="form-group">
+                        <label class="sr-only">Fono</label>
+                        <input type="text" class="form-control" id="title" placeholder="Fono" name="fono" required>
+                      </div> 
+                      <div class="form-group">
+                        <label class="">Inicio Contrato</label>
+                        <input class="pull-right" type="date" name="fechainicio" value="<?php echo date('Y-m-d'); ?>" placeholder="Fecha Inicio Contrato" required/>
+                      </div>
+                      <div class="form-group">
+                        <label class="">Término Contrato</label>
+                        <input class="pull-right" type="date" name="fechatermino" value="<?php echo date('Y-m-d'); ?>" placeholder="Fecha Termino Contrato" required/>
+                      </div>
+                      <div class="form-group">
+                        <label class="">Inicio de Pase</label>
+                        <input class="pull-right" type="date" name="iniciopase" value="<?php echo date('Y-m-d'); ?>" placeholder="Fecha Inicio Pase" required/>
+                      </div>
+                      <div class="form-group">
+                        <label class="">Término de Pase</label>
+                        <input class="pull-right" type="date" name="terminopase" value="<?php echo date('Y-m-d'); ?>" placeholder="Fecha Termino Pase" required/>
+                      </div> 
                     </div>
                     <div class="col-md-4 col-lg-4">
                       <div class="form-group">
-                        <label class="">Alergias</label>
-                        <textarea rows="4" cols="50" placeholder="Alergias" name="alergias" class="form-control"></textarea>
-                      </div>
-                      <div class="form-group">
-                        <label>Grupo Sanguíneo</label>
-                        <?php getSelect(grupo_sanguineo,id_grupo_sanguineo,descripcion); ?>
+                        <label>Tipo de Contrato</label>
+                        <?php getSelect(tipo_contrato,id_tipo_contrato,descripcion); ?>
                       </div>       
                       <div class="form-group">
                         <label>Tipo de Pase</label>
                         <?php getSelect(tipo_pase,id_tipo_pase,descripcion); ?>
-                      </div>    
+                      </div>  
                       <div class="form-group">
-                        <label>Tipo de Turno</label>
-                        <?php getSelect(tipo_turno,id_tipo_turno,descripcion); ?>
-                      </div>      
-                                 
+                        <label>Sector Asignado</label>
+                        <?php getSelect(sectores,id_sector,descripcion); ?>
+                      </div>  
+                      <?php 
+                      if($_SESSION['nombreUsuario']=="Admin"){
+                      ?>
+                        <div class="form-group">
+                          <label>Tipo de Turno</label>
+                          <?php getSelect(tipo_turno,id_tipo_turno,descripcion); ?>
+                        </div>      
+                      <?php
+                        }
+                      ?>
                       <div class="clearfix">
                         <button type="submit" class="btn btn-primary pull-right"> Ingresar Trabajador</button>
                       </div>

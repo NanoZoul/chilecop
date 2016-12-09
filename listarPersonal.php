@@ -26,6 +26,11 @@ if($_SESSION['nombreUsuario']){
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
+		<?php 
+		if(isset($_GET['msg'])){
+			echo "<script>alert('Personal ingresado correctamente.')</script>";
+		}
+		?>
 	</head>
 	<body>
 		<div class="container-fluid display-table">
@@ -108,6 +113,6 @@ if($_SESSION['nombreUsuario']){
 </html>
 <?php
 }else{
-  header("location: http://www.chilecop.cl/accesoClientes.html");
+  header("location: http://www.chilecop.cl/accesoAcreditacion.html");
 }
 ?>

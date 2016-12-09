@@ -12,11 +12,13 @@ if($_SESSION['nombreUsuario']){
     <?php 
     include('php/consultasAcreditacion.php');
     tituloPanel();
-    if(isset($_GET['id'])){
+    if(isset($_SESSION["idContratista"])){
+      $id = $_SESSION["idContratista"];
+    }else{
       $id = $_GET['id'];
     }
     $contenido = getVerEmpresaContratista($id);
-    list($n_fantasia,$n_contacto,$rut,$mail_contacto,$fono,$rep,$observacion,$f_registro,$d_casa_matriz,$d_sucursal,$mutualidad) = explode("%$", $contenido);
+    list($n_fantasia,$n_contacto,$rut,$mail_contacto,$fono,$rep,$observacion,$f_registro,$d_casa_matriz,$d_sucursal,$mutualidad,$responsable,$emailresponsable) = explode("%$", $contenido);
     ?>
 
     <!-- Bootstrap -->
@@ -87,6 +89,10 @@ if($_SESSION['nombreUsuario']){
                   <p><?php echo $fono; ?></p>
                   <p><b>Representante</b></p>
                   <p><?php echo $rep; ?></p>
+                  <p><b>Responsable</b></p>
+                  <p><?php echo $responsable; ?></p>
+                  <p><b>E-mail Representante</b></p>
+                  <p><?php echo $emailresponsable; ?></p>
                 </div>
                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
                     <p><b>Observación</b></p>
@@ -101,7 +107,8 @@ if($_SESSION['nombreUsuario']){
                     <p><?php echo $mutualidad; ?></p>
                     <div class="ver_buttons">
                       <a class='btn btn-xs btn-default' href='listarContratos.php?id=<?php echo $id; ?>' role='button'>Ver Contratos</a>
-                      <a class='btn btn-xs btn-warning' href='editarEmpresa.php?id=<?php echo $id; ?>' role='button'>Editar</a>
+                      <a class='btn btn-xs btn-default' href='documentacionEmpresa.php' role='button'>Ver Documentos</a>
+                      <a class='btn btn-xs btn-warning' href='editarContratista.php' role='button'>Editar</a>
                   </div>     
                 </div>
             </div>

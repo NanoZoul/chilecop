@@ -106,6 +106,6 @@ if($_SESSION['nombreUsuario']){
 </html>
 <?php
 }else{
-  header("location: http://www.chilecop.cl/accesoClientes.html");
+  header("location: http://www.chilecop.cl/accesoAcreditacion.html");
 }
 ?>

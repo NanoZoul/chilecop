@@ -130,47 +130,55 @@ if($_SESSION['nombreUsuario']){
                   <div class="row">
                     <div class="col-md-4 col-lg-4">
                       <div class="form-group">
-                        <label class="sr-only">Rut</label>
+                        <label class="">Rut</label>
                         <input type="text" class="form-control" id="title" placeholder="Rut" name="rut" required>
                       </div>
                       <div class="form-group">
-                        <label class="sr-only">Nombre de Fantasía</label>
+                        <label class="">Nombre de Fantasía</label>
                         <input type="text" class="form-control" id="title" placeholder="Nombre de fantasía" name="nombre" required>
                       </div>
                       <div class="form-group">
-                        <label class="sr-only">Nombre contacto</label>
+                        <label class="">Nombre contacto</label>
                         <input type="text" class="form-control" id="title" placeholder="Nombre de Contacto" name="n_contacto" required>
                       </div>    
                       <div class="form-group">
-                          <label class="sr-only">Fono</label>
+                          <label class="">Fono</label>
                           <input type="text" class="form-control" id="title" placeholder="Fono" name="fono" required>
+                      </div>
+                      <div class="form-group">
+                        <label class="">Responsable</label>
+                        <input type="text" class="form-control" id="title" placeholder="Responsable" name="responsable" required>
+                      </div>
+                      <div class="form-group">
+                        <label class="">E-mail Responsable</label>
+                        <input type="email" class="form-control" id="title" placeholder="E-mail Responsable" name="emailresponsable" required>
                       </div>                        
                     </div>
                     <div class="col-md-4 col-lg-4">
                       <div class="form-group">
-                        <label class="sr-only">Representante</label>
-                        <input type="text" class="form-control" id="title" placeholder="Representante" name="representante" >
+                        <label class="">Representante</label>
+                        <input type="text" class="form-control" id="title" placeholder="Representante" name="representante" required>
                       </div>
                       <div class="form-group">
-                        <label class="sr-only">E-mail</label>
+                        <label class="">E-mail</label>
                         <input type="email" class="form-control" id="title" placeholder="E-mail" name="email" required>
                       </div>
                       <div class="form-group">
-                        <label class="sr-only">Dirección Casa Matríz</label>
+                        <label class="">Dirección Casa Matríz</label>
                         <input type="text" class="form-control" id="title" placeholder="Dirección Casa matríz" name="direccion">
                       </div>
                       <div class="form-group">
-                        <label class="sr-only">Dirección Sucursal</label>
+                        <label class="">Dirección Sucursal</label>
                         <input type="text" class="form-control" id="title" placeholder="Dirección Sucursal" name="direccion_sucursal" >
                       </div>
                     </div>
                     <div class="col-md-4 col-lg-4">
                       <div class="form-group">
-                        <label class="sr-only">Mutualidad</label>
+                        <label class="">Mutualidad</label>
                         <input type="text" class="form-control" id="title" placeholder="Mutualidad" name="mutualidad" >
                       </div>
                       <div class="form-group">
-                        <label class="sr-only">Caja de Compensación</label>
+                        <label class="">Caja de Compensación</label>
                         <input type="text" class="form-control" id="title" placeholder="Caja de Compensación" name="ccompensacion" >
                       </div>                      
                       <div class="form-group">
@@ -181,33 +189,6 @@ if($_SESSION['nombreUsuario']){
                         <button type="submit" class="btn btn-primary pull-right"> Ingresar Contratista</button>
                       </div>
                     </div>
-                  </div>
-                </form>
-                <form method="post" id="formulario" enctype="multipart/form-data">
-                  <label>Documento 1</label>
-                  <div class="form-group">
-                     <span class="btn btn-default btn-file">                            
-                        Subir Archivo <input type="file" name="file">
-                     </span>
-                     <label id="respuesta" class=""></label>
-                  </div>
-                </form>
-                <form method="post" id="formulario2" enctype="multipart/form-data">
-                  <label>Documento 2</label>
-                  <div class="form-group">
-                     <span class="btn btn-default btn-file">                            
-                        Subir Archivo <input type="file" name="file2">
-                     </span>
-                     <label id="respuesta2" class=""></label>
-                  </div>
-                </form>
-                <form method="post" id="formulario3" enctype="multipart/form-data">
-                  <label>Documento 3</label>
-                  <div class="form-group">
-                     <span class="btn btn-default btn-file">                            
-                        Subir Archivo <input type="file" name="file3">
-                     </span>
-                     <label id="respuesta3" class=""></label>
                   </div>
                 </form>
               </div>
@@ -253,6 +234,6 @@ if($_SESSION['nombreUsuario']){
 </html>
 <?php
 }else{
-  header("location: http://www.chilecop.cl/caccesodemo/index.html");
+  header("location: http://www.chilecop.cl/acreditacion/escritorio.php?usuario=Admin");
 }
 ?>

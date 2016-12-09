@@ -63,5 +63,85 @@
 		VAL_14='$mod14'
 		WHERE ID_ACREDITADO='$id'";
 	mysql_query($sql,$con);
+
+
+	$sql = "SELECT ec.N_FANTASIA, pa.NOMBRES, pa.APELLIDOS, oc.N_CONTRATO FROM personal_acreditado pa, empresa_contratista ec, orden_contrato oc
+	WHERE pa.ID_ACREDITADO='$id' AND 
+	pa.ID_ORDEN_CONTRATO = oc.ID_OC AND 
+	oc.ID_CONTRATISTA = ec.ID_CONTRATISTA";
+
+	$respuesta = mysql_query($sql,$con);
+	if($fila = mysql_fetch_array($respuesta)){
+		$nombreEmpresa = $fila['N_FANTASIA'];
+		$nombrePersona = $fila['NOMBRES'] . " " . $fila['APELLIDOS'];
+		$numeroContrato = $fila['N_CONTRATO'];
+	}
+
+	//ENVÍO DE CORREO A PERSONA RESPONSABLE DE REVISION DE PERSONAL
+	$header = 'From: ' . "Chilecop Administracion <a.henriquez@chilecop.cl> \r\n";
+	$header .= "cc: j.lopez@chilecop.cl \r\n";
+	$header .= "cc: c.opazo@chilecop.cl \r\n";
+	$header .= "X-Mailer: PHP/" . phpversion() . " \r\n";
+	$header .= "Mime-Version: 1.0 \r\n";
+	$header .= "Content-Type:  text/html\r\n";
+
+	$html = "Hemos recibido satisfactoriamente la actualización documentaria de la empresa <b>" . $nombreEmpresa . "</b>: <br><br>
+	<b>Empresa:</b> " . $nombreEmpresa . "<br>
+	<b>Número Contrato:</b> " . $numeroContrato . "<br>
+	<b>Nombre Persona:</b> " . $nombrePersona . "<br><br>
+
+	<b>Documentos actualizados:</b><br><br>";
+
+	if(isset($_SESSION['doc1Refresh']))
+			$html .= "Documento 1: " . $_SESSION['doc1Refresh'] . "<br>";
+	if(isset($_SESSION['doc2Refresh']))
+			$html .= "Documento 2: " . $_SESSION['doc2Refresh'] . "<br>";
+	if(isset($_SESSION['doc3Refresh']))
+			$html .= "Documento 3: " . $_SESSION['doc3Refresh'] . "<br>";
+	if(isset($_SESSION['doc4Refresh']))
+			$html .= "Documento 4: " . $_SESSION['doc4Refresh'] . "<br>";
+	if(isset($_SESSION['doc5Refresh']))
+			$html .= "Documento 5: " . $_SESSION['doc5Refresh'] . "<br>";
+	if(isset($_SESSION['doc6Refresh']))
+			$html .= "Documento 6: " . $_SESSION['doc6Refresh'] . "<br>";
+	if(isset($_SESSION['doc7Refresh']))
+			$html .= "Documento 7: " . $_SESSION['doc7Refresh'] . "<br>";
+	if(isset($_SESSION['doc8Refresh']))
+			$html .= "Documento 8: " . $_SESSION['doc8Refresh'] . "<br>";
+	if(isset($_SESSION['doc9Refresh']))
+			$html .= "Documento 9: " . $_SESSION['doc9Refresh'] . "<br>";
+	if(isset($_SESSION['doc10Refresh']))
+			$html .= "Documento 10: " . $_SESSION['doc10Refresh'] . "<br>";
+	if(isset($_SESSION['doc11Refresh']))
+			$html .= "Documento 11: " . $_SESSION['doc11Refresh'] . "<br>";
+	if(isset($_SESSION['doc12Refresh']))
+			$html .= "Documento 12: " . $_SESSION['doc12Refresh'] . "<br>";
+	if(isset($_SESSION['doc13Refresh']))
+			$html .= "Documento 13: " . $_SESSION['doc13Refresh'] . "<br>";
+	if(isset($_SESSION['doc14Refresh']))
+			$html .= "Documento 14: " . $_SESSION['doc14Refresh'] . "<br><br><br>";
+
+	$html .= "<a taget= '_blank' href='http://www.chilecop.cl/acreditacion/documentacionPersonal.php?id=" . $id . "'>Documentación " . $nombrePersona . "</a>";
+
+	unset($_SESSION['doc1Refresh']);
+	unset($_SESSION['doc2Refresh']);
+	unset($_SESSION['doc3Refresh']);
+	unset($_SESSION['doc4Refresh']);
+	unset($_SESSION['doc5Refresh']);
+	unset($_SESSION['doc6Refresh']);
+	unset($_SESSION['doc7Refresh']);
+	unset($_SESSION['doc8Refresh']);
+	unset($_SESSION['doc9Refresh']);
+	unset($_SESSION['doc10Refresh']);
+	unset($_SESSION['doc11Refresh']);
+	unset($_SESSION['doc12Refresh']);
+	unset($_SESSION['doc13Refresh']);
+	unset($_SESSION['doc14Refresh']);
+
+	$asunto = $nombreEmpresa . " - " . $numeroContrato . " - " . $nombrePersona;
+	$para = "ahenriquez@sodired.cl";
+	//COMPOSICIÓN DEL CORREO
+	mail($para, $asunto, utf8_decode($html), $header);
+	
 	echo "DOCUMENTACIÓN ALMACENADA CORRECTAMENTE.";
 ?>

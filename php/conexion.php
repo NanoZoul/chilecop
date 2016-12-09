@@ -1,6 +1,6 @@
 <?php
 	function conectarse(){
-		$con = mysql_connect("localhost","chilecop_control","admin2954");
+		$con = mysql_connect("localhost","chilecop","cHilecop2016");
 		if (!$con)
 		  {
 		  die('Could not connect: ' . mysql_error());
@@ -11,7 +11,7 @@
 	}
 
 	function conectarse2(){
-		$con = mysql_connect("localhost","chilecop_control","admin2954");
+		$con = mysql_connect("localhost","chilecop","cHilecop2016");
 		if (!$con)
 		  {
 		  die('Could not connect: ' . mysql_error());

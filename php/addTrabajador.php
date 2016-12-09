@@ -11,14 +11,18 @@
 	$procedencia = $_POST['procedencia'];
 	$cargo = $_POST['cargo'];
 	$direccion = $_POST['direccion'];
-	$fono = $_POST['fono'];
-	$alergias = $_POST['alergias']; 
-	$id_grupo_sanguineo = $_POST['id_grupo_sanguineo']; 
+	$region_id = $_POST['region_id'];
+	$fono = $_POST['fono']; 
+	$id_tipo_contrato = $_POST['id_tipo_contrato']; 
 	$id_tipo_pase = $_POST['id_tipo_pase']; 
-	$id_tipo_turno = $_POST['id_tipo_turno'];                 
+	$id_tipo_turno = $_POST['id_tipo_turno'];
+	$fechainicio = $_POST['fechainicio'];
+	$fechatermino = $_POST['fechatermino'];
+	$iniciopase = $_POST['iniciopase'];
+	$terminopase = $_POST['terminopase'];                 
 	$con = conectarse();
 	mysql_set_charset("utf8",$con);
-	$sql = "INSERT INTO personal_acreditado (id_estado, id_orden_contrato, rut, nombres, apellidos, f_nacimiento, id_sexo, nacionalidad, visa, procedencia, cargo, direccion, fono_emergencia, alergias, id_grupo_sanguineo, id_tipo_pase, id_tipo_turno, f_registro) VALUES ('3', '$idcontrato', '$rut', '$nombre', '$apellidos', '$fnac', '$sexo', '$nacionalidad', '$visa', '$procedencia','$cargo', '$direccion', '$fono','$alergias','$id_grupo_sanguineo','$id_tipo_pase','$id_tipo_turno',now())";
+	$sql = "INSERT INTO personal_acreditado (id_estado, id_orden_contrato, rut, nombres, apellidos, f_nacimiento, id_sexo, nacionalidad, visa, procedencia, cargo, direccion, fono_emergencia, id_tipo_contrato, id_tipo_pase, id_tipo_turno, region_id, fechainicio, fechatermino, iniciopase, terminopase, f_registro) VALUES ('3', '$idcontrato', '$rut', '$nombre', '$apellidos', '$fnac', '$sexo', '$nacionalidad', '$visa', '$procedencia','$cargo', '$direccion', '$fono', '$id_tipo_contrato','$id_tipo_pase','$id_tipo_turno','$region_id','$fechainicio','$fechatermino','$iniciopase','$terminopase',now())";
 	mysql_query($sql,$con);
 
 	//CREACIÓN DE LA CARPETA PARA LOS ARCHIVOS CORRESPONDIENTES
@@ -36,7 +40,7 @@
 	//AHORA CREAMOS LA INSTANCIA	
 	$sql = "INSERT INTO documentacion (ID_ACREDITADO) VALUES ($acreditado)"; 
 	mysql_query($sql,$con);
-	//RETORNAMOS A LA PAGINA DE LOS CONTRATOS	
-	header("location: http://www.chilecop.cl/acreditacion/listarPersonal.php?id=$idcontrato");
+	//RETORNAMOS A LA PAGINA DE LOS CONTRATOS
+	header("location: http://www.chilecop.cl/acreditacion/listarPersonal.php?id=$idcontrato&msg=1");
 	mysql_close($con);
 ?>

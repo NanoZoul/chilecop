@@ -52,41 +52,44 @@ if($_SESSION['nombreUsuario']){
     <script>
       $(function(){
         document.getElementById("estado").addEventListener("click", function(){
+          var tipodeusuario = document.getElementById("tipousuario").value;
           var id = document.getElementById("id").value;
           var estadoActual = document.getElementById("estadoId").innerHTML;
-          $.ajax({
-            data: {'id': id,'estadoActual': estadoActual},
-            type: "POST",
-            url: "php/cambiarEstado.php",
-            success: function(data)
-            {
-              switch (data) {
-                case '1':
-                  $("#estadoId").html(data);
-                  $("#estado").html("Aprobado");
-                  $("#estado").removeClass("pendiente");
-                  $("#estado").addClass("estado ok");
-                  break;
-                case '2':
-                  $("#estadoId").html(data);
-                  $("#estado").html("Rechazado");
-                  $("#estado").removeClass("ok");
-                  $("#estado").addClass("estado rechazado");
-                  break;
-                case '3':
-                  $("#estadoId").html(data);
-                  $("#estado").html("En revisión");
-                  $("#estado").removeClass("rechazado");
-                  $("#estado").addClass("estado pendiente");
-                  break;                
-                default:
-                  $("#estadoId").html('3');
-                  $("#estado").html("En revisión");
-                  $("#estado").addClass("estado pendiente");
-                  break;
+          if(tipodeusuario=="Admin"){
+            $.ajax({
+              data: {'id': id,'estadoActual': estadoActual},
+              type: "POST",
+              url: "php/cambiarEstado.php",
+              success: function(data)
+              {
+                switch (data) {
+                  case '1':
+                    $("#estadoId").html(data);
+                    $("#estado").html("Aprobado");
+                    $("#estado").removeClass("pendiente");
+                    $("#estado").addClass("estado ok");
+                    break;
+                  case '2':
+                    $("#estadoId").html(data);
+                    $("#estado").html("Rechazado");
+                    $("#estado").removeClass("ok");
+                    $("#estado").addClass("estado rechazado");
+                    break;
+                  case '3':
+                    $("#estadoId").html(data);
+                    $("#estado").html("En revisión");
+                    $("#estado").removeClass("rechazado");
+                    $("#estado").addClass("estado pendiente");
+                    break;                
+                  default:
+                    $("#estadoId").html('3');
+                    $("#estado").html("En revisión");
+                    $("#estado").addClass("estado pendiente");
+                    break;
+                }
               }
-            }
-          });
+            });
+          }
 
         });
       });
@@ -140,6 +143,7 @@ if($_SESSION['nombreUsuario']){
                   <img class="imagen-articulo" src="images/personal/1.jpg">
                   <!-- En el siguiente div mantengo el estado actual -->
                   <input id="id" type="hidden" value="<?php echo $id; ?>">
+                  <input id="tipousuario" type="hidden" value="<?php echo $_SESSION['nombreUsuario']; ?>">
                   <div id="estadoId" style="display:none;"><?php echo $estado; ?></div>
                   <div id="estado" class="estado <?php echo $estadoClass; ?>"><?php echo $estadoTxt; ?></div>
                 </div>

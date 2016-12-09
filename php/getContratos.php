@@ -1,7 +1,8 @@
 <?php
 	include('conexion.php');
+	$empresa = $_POST['empresa'];
 	$con = conectarse();
-    $sql = "SELECT * FROM orden_contrato";
+    $sql = "SELECT * FROM orden_contrato WHERE ID_CONTRATISTA='$empresa'";
     mysql_set_charset("utf8",$con);
     $resultado = mysql_query($sql,$con);
     if($fila = mysql_fetch_array($resultado))

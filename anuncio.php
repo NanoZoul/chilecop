@@ -15,9 +15,6 @@ if($_SESSION['nombreUsuario']){
 
     <!-- Bootstrap -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="vendor/chosen/chosen.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/font-awesome-4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/summernote/summernote.css">
     <link rel="stylesheet" type="text/css" href="css/estilosAdmin.css">
     <link rel="stylesheet" type="text/css" href="css/new-article.css">
     
@@ -28,6 +25,26 @@ if($_SESSION['nombreUsuario']){
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script>
+      function enviar(){
+          var obs = document.getElementById("observacion").value;
+          var asunto = document.getElementById("asunto").value;
+          $.ajax({
+              type: 'POST',
+              url: "php/mensajeMasivo.php",
+              data: {'observacion':obs,'asunto':asunto},
+              // Mostramos un mensaje con la respuesta de PHP
+              success: function(data) {
+              alert(data);
+              document.getElementById("observacion").value = "";
+              document.getElementById("asunto").value = "";
+            }
+          });
+      }
+    </script>
+
+
   </head>
   <body>
     <div class="container-fluid display-table">
@@ -69,23 +86,21 @@ if($_SESSION['nombreUsuario']){
             <div class="content-inner">
               <div class="form-wrapper">
               <p>Llene el siguiente formulario para enviar un mensaje a todos los usuarios del sistema.</p>
-                <form action="php/ingresarMandante.php" method="post">
                   <div class="row">
                     <div class="col-md-8 col-lg-8">
                       <div class="form-group">
                         <label class="sr-only">Asunto</label>
-                        <input type="text" class="form-control" id="title" placeholder="Asunto" name="asunto" >
+                        <input id="asunto" type="text" class="form-control" id="title" placeholder="Asunto" name="asunto" >
                       </div>
                       <div class="form-group">
                         <label class="">Mensaje</label>
-                        <textarea rows="4" cols="50" placeholder="Observación" name="observacion" class="form-control" ></textarea>
+                        <textarea id="observacion" rows="4" cols="50" placeholder="Observación" name="observacion" class="form-control" ></textarea>
                       </div>     
                       <div class="clearfix">
-                        <button type="submit" class="btn btn-primary pull-right"> Enviar Aviso</button>
+                        <button onClick="enviar()" class="btn btn-primary pull-right"> Enviar Aviso</button>
                       </div>
                     </div>
                   </div>
-                </form>
               </div>
             </div>
           </div>
@@ -104,27 +119,6 @@ if($_SESSION['nombreUsuario']){
     
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="vendor/chosen/chosen.jquery.min.js"></script>
-    <script type="text/javascript" src="vendor/summernote/summernote.min.js"></script>
-    <script src="js/default.js"></script>
-    <script type="text/javascript">
-      var config = {
-        '.chosen-select' : {},
-        'chosen-select-deselect' : {allow_single_deselect: true},
-        'chosen-select-no-single': {disable_search_threshold: 10},
-        '.chosen-select-no-result': {no_result_text: 'Oops, nothing found'},
-        '.chosen-select-width' : {width: "95%"}
-      }
-      for(var selector in config) {
-        $(selector).chosen(config[selector]);
-      }
-    </script>
-
-    <script type="text/javascript">
-      $('.summernote').summernote({
-        height: 200
-      })
-    </script>
   </body>
 </html>
 <?php

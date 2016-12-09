@@ -1,6 +1,7 @@
 <?php
 session_start();
 if($_SESSION['nombreUsuario']){
+  $usuario = $_SESSION['nombreUsuario'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -139,31 +140,49 @@ if($_SESSION['nombreUsuario']){
                         <input type="text" class="form-control" id="title" placeholder="Dirección" name="direccion" required>
                       </div>
                       <div class="form-group">
+                        <label>Region</label>
+                        <?php getSelect(regiones,region_id,region_nombre); ?>
+                      </div> 
+                      <div class="form-group">
                         <label class="sr-only">Fono</label>
                         <input type="text" class="form-control" id="title" placeholder="Fono" name="fono" required>
+                      </div> 
+                      <div class="form-group">
+                        <label class="">Inicio Contrato</label>
+                        <input class="pull-right" type="date" name="fechainicio" value="<?php echo date('Y-m-d'); ?>" placeholder="Fecha Inicio Contrato" required/>
                       </div>
                       <div class="form-group">
-                        <label class="sr-only">Contacto</label>
-                        <input type="text" class="form-control" id="title" placeholder="Contacto" name="contacto">
-                      </div>    
+                        <label class="">Término Contrato</label>
+                        <input class="pull-right" type="date" name="fechatermino" value="<?php echo date('Y-m-d'); ?>" placeholder="Fecha Termino Contrato" required/>
+                      </div>
+                      <div class="form-group">
+                        <label class="">Inicio de Pase</label>
+                        <input class="pull-right" type="date" name="iniciopase" value="<?php echo date('Y-m-d'); ?>" placeholder="Fecha Inicio Pase" required/>
+                      </div>
+                      <div class="form-group">
+                        <label class="">Término de Pase</label>
+                        <input class="pull-right" type="date" name="terminopase" value="<?php echo date('Y-m-d'); ?>" placeholder="Fecha Termino Pase" required/>
+                      </div> 
                     </div>
                     <div class="col-md-4 col-lg-4">
                       <div class="form-group">
-                        <label class="">Alergias</label>
-                        <textarea rows="4" cols="50" placeholder="Alergias" name="alergias" class="form-control"></textarea>
-                      </div>
-                      <div class="form-group">
-                        <label>Grupo Sanguíneo</label>
-                        <?php getSelect(grupo_sanguineo,id_grupo_sanguineo,descripcion); ?>
+                        <label>Tipo de Contrato</label>
+                        <?php getSelect(tipo_contrato,id_tipo_contrato,descripcion); ?>
                       </div>       
                       <div class="form-group">
                         <label>Tipo de Pase</label>
                         <?php getSelect(tipo_pase,id_tipo_pase,descripcion); ?>
                       </div>    
-                      <div class="form-group">
-                        <label>Tipo de Turno</label>
-                        <?php getSelect(tipo_turno,id_tipo_turno,descripcion); ?>
-                      </div>      
+                      <?php 
+                      if($_SESSION['nombreUsuario']=="Admin"){
+                      ?>
+                        <div class="form-group">
+                          <label>Tipo de Turno</label>
+                          <?php getSelect(tipo_turno,id_tipo_turno,descripcion); ?>
+                        </div>      
+                      <?php
+                        }
+                      ?>
                                  
                       <div class="clearfix">
                         <button type="submit" class="btn btn-primary pull-right"> Ingresar Trabajador</button>

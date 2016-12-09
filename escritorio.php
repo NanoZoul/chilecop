@@ -58,7 +58,7 @@ if($_SESSION['nombreUsuario']){
           }
          });
     </script>
-    
+    <script src="vendor/chart.js/src/chart.js"></script>
   </head>
   <body>
     <div class="container-fluid display-table">
@@ -95,10 +95,114 @@ if($_SESSION['nombreUsuario']){
 
           <div id="dashboard-con">
             <div class="row">
+              <div class="col-md-6 dashboard-right-cell">
+                <div class="admin-content-con">
+                  <header>
+                    <h5>Mensajes de Sistema</h5>
+                  </header>
+
+                  <div style="color:#1ab394;" class="comment-head-dash clearfix">
+                    <div class="commenter-name-dash pull-left">Actualización</div>
+                  </div>
+                  <p style="color:#1ab394;" class="comment-dash">Actualización del sistema en sector B</p>
+                  <small style="color:#1ab394;" class="comment-date-dash"><?php echo Date("d/m/Y"); ?></small>
+                  <hr>
+                  <div style="color:#1ab394;" class="comment-head-dash clearfix">
+                    <div class="commenter-name-dash pull-left">Cambio tipo de turno</div>
+                  </div>
+                  <p style="color:#1ab394;" class="comment-dash">Cambio tipo de turno</p>
+                  <small style="color:#1ab394;" class="comment-date-dash"><?php echo Date("d/m/Y"); ?></small>
+                  <hr>
+                </div>
+              </div>
+              <div class="col-md-6 dashboard-left-cell">
+                <div class="admin-content-con">
+                  <header class="clearfix">
+                    <h5 class="pull-left">N° de registros en garitas</h5>
+                  </header>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Garita</th>
+                        <th>Entradas</th>
+                        <th>Salidas</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Garita 1</td>
+                        <td>18</td>
+                        <td>14</td>
+                      </tr>
+                      <tr>
+                        <td>Garita 2</td>
+                        <td>32</td>
+                        <td>15</td>
+                      </tr>
+                      <tr>
+                        <td>Garita 3</td>
+                        <td>43</td>
+                        <td>16</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>             
+            </div>
+            <div class="row">
               <div class="col-md-12">
                 <div class="admin-content-con clearfix">
                     <header>
-                      <h5><b>ADMINISTRACIÓN CHILECOP</b></h5>
+                      <h5>Documentación Relevante</h5>
+                    </header>
+
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Nombre Documento</th>
+                          <th>Fecha Modificación</th>
+                          <th>Botón Descarga</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Instructivo Acreditación</td>
+                          <td>05-12-2016</td>
+                          <td><a class="btn btn-primary" href="http://www.chilecop.cl/acreditacion/documentos/instructivoAcreditacion.pdf" download="instructivoAcreditacion.pdf">Descargar</a></td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Información Auditoría de Remuneraciones</td>
+                          <td>05-12-2016</td>
+                          <td><a class="btn btn-primary" href="http://www.chilecop.cl/acreditacion/documentos/informacionAuditoria.pdf" download="informacionAuditoria.pdf">Descargar</a></td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>Nómina Auditoría de Remuneraciones</td>
+                          <td>05-12-2016</td>
+                          <td><a class="btn btn-primary" href="http://www.chilecop.cl/acreditacion/documentos/nominaAuditoriaRemuneraciones.xls" download="nominaAuditoriaRemuneraciones.pdf">Descargar</a></td>
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                          <td>Nómina Acreditación</td>
+                          <td>05-12-2016</td>
+                          <td><a class="btn btn-primary" href="http://www.chilecop.cl/acreditacion/documentos/nominaAcreditacion.pdf" download="nominaAcreditacion.pdf">Descargar</a></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- 
+                    DEBERIAN SER ASI:
+                    <a class="label label-success fancy" href="contacto.php?id=3">Enviar E-mail</a> -->
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="admin-content-con clearfix">
+                    <header>
+                      <h5>Administración Chilecop</h5>
                     </header>
 
                     <table class="table table-bordered">
@@ -119,7 +223,7 @@ if($_SESSION['nombreUsuario']){
                           <td>c.opazo@chilecop.cl</td>
                           <td>9 78941564</td>
                           <td>Gerente General</td>
-                          <td><a class="btn btn-primary" href="escritorio.php?usuario=Admin">Administrador</a></td>
+                          <td><a class="btn btn-default" href="mailto:c.opazo@chilecop.cl">Enviar E-mail</a></td>
                         </tr>
                         <tr>
                           <td>2</td>
@@ -127,7 +231,7 @@ if($_SESSION['nombreUsuario']){
                           <td>j.lopez@chilecop.cl</td>
                           <td>9 73885258</td>
                           <td>Subgerencia de Desarrollo</td>
-                          <td><a class="btn btn-warning" href="escritorio.php?usuario=Mandante">Mandante</a></td>
+                          <td><a class="btn btn-default" href="mailto:j.lopez@chilecop.cl?cc=a.henriquez@chilecop.cl">Enviar E-mail</a></td>
                         </tr>
                         <tr>
                           <td>3</td>
@@ -135,7 +239,7 @@ if($_SESSION['nombreUsuario']){
                           <td>a.henriquez@chilecop.cl</td>
                           <td>9 63424158</td>
                           <td>Ingeniero Civil Informático</td>
-                          <td><a class="btn btn-danger" href="escritorio.php?usuario=Contratista">Contratista</a></td>
+                          <td><a class="btn btn-default" href="mailto:a.henriquez@chilecop.cl?cc=j.lopez@chilecop.cl">Enviar E-mail</a></td>
                         </tr>
                       </tbody>
                     </table>

@@ -12,9 +12,11 @@ if($_SESSION['nombreUsuario']){
 		 <?php 
 	    include('php/consultasAcreditacion.php');
 	    tituloPanel();
-		if(isset($_GET['id'])){
-	    	$id = $_GET['id'];
-	    }
+	    if(isset($_SESSION["idContratista"])){
+	      $id = $_SESSION["idContratista"];
+	    }else{
+	      $id = $_GET['id'];
+    	}
 		?>
 
 		<!-- Bootstrap CSS -->
@@ -64,12 +66,10 @@ if($_SESSION['nombreUsuario']){
 	          <div id="content">
 	            <header class="clearfix">
 	              <div class="col-xs-5 col-sm-3 col-md-3"><b>Contratos Vigentes</b></div>
-	              <?php if($usuario=="Admin"){ ?>
 	              <div class="col-xs-7 col-sm-9 col-md-9">
 	              	<a class="btn btn-xs btn-success pull-right" href="ingresarOrdenContrato.php?id=<?php echo $id; ?>" role="button">Ingresar Contrato</a>	
 	              </div>
-	              <?php } ?>
-	            </header>
+	             </header>
 
 	            <div class="content-inner">
 	            	<table class="table table-hover">
@@ -108,6 +108,6 @@ if($_SESSION['nombreUsuario']){
 </html>
 <?php
 }else{
-  header("location: http://www.chilecop.cl/accesoClientes.html");
+  header("location: http://www.chilecop.cl/accesoAcreditacion.html");
 }
 ?>

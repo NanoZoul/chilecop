@@ -44,6 +44,13 @@
                 <li><a href="ingresarTrabajador2.php">Ingresar Trabajador</a></li>
               </ul>
             </li>
+			
+			<li class="link">
+              <a href="pasesDiarios.php">
+                <span class="glyphicon glyphicon glyphicon-tags" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Pases Diarios</span>
+              </a>
+            </li>
 
             <li class="link">
               <a href="#">
@@ -74,7 +81,7 @@
               </a>
             </li>
             <li class="link">
-              <a href="ingresarContratista.php">
+              <a href="verContratista.php">
                   <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                   <span class="hidden-sm hidden-xs">Mi empresa</span>
               </a>
@@ -85,18 +92,25 @@
                   <span class="hidden-sm hidden-xs">Mis Contratos</span>
               </a>
             </li>
+
             <li class="link">
-              <a href="#">
-                  <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                  <span class="hidden-sm hidden-xs">Mis Observaciones</span>
+              <a href="#personal" data-toggle="collapse" aria-controls="collapse-post">
+                <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Personal Acreditado</span>
+              </a>
+              <ul class="collapse collapseable" id="personal">
+                <li><a href="buscador.php">Buscador</a></li>
+                <li><a href="ingresarTrabajador2.php">Ingresar Trabajador</a></li>
+              </ul>
+            </li>
+			
+			<li class="link">
+              <a href="pasesDiarios.php">
+                <span class="glyphicon glyphicon glyphicon-tags" aria-hidden="true"></span>
+                <span class="hidden-sm hidden-xs">Pases Diarios</span>
               </a>
             </li>
-            <li class="link">
-              <a href="#">
-                  <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                  <span class="hidden-sm hidden-xs">Buscador</span>
-              </a>
-            </li>
+            
             <li class="link">
               <a href="#">
                   <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
@@ -208,13 +222,18 @@
     echo '<title>Panel de Control - Chilecop</title>';
   }
 
-  function getSelect($tabla,$dato1,$dato2){
+  function getSelect($tabla,$dato1,$dato2,$seleccion){
     $con = conectarse();
     $sql="SELECT " . $dato1 . ", " . $dato2 . " FROM " . $tabla;
     echo "<select name='$dato1' class='form-control' id='$dato1' required>";
     $resultado = mysql_query($sql,$con);
+    $selected = "";
     while($row = mysql_fetch_array($resultado)){
-      echo "<option value='" . $row[$dato1] . "'>" . $row[$dato2] . "</option>"; 
+      if($seleccion==$row[$dato1]){
+        $selected = "selected";
+      }
+      echo "<option value='" . $row[$dato1] . "' " . $selected . ">" . $row[$dato2] . "</option>"; 
+      $selected = "";
     }
     echo "</select>";
     mysql_close($con);
@@ -346,6 +365,16 @@
     return $fila['ID_ESTADO'] . "%$" . $fila['RUT'] . "%$" . $fila['NOMBRES'] . "%$" . $fila['APELLIDOS'] . "%$" . $fila['CARGO'] . "%$" . $fila['F_NACIMIENTO'] . "%$" . $fila['PROCEDENCIA'] . "%$" . $fila['ALERGIAS'] . "%$" . $fila['FONO_EMERGENCIA'] . "%$" . $fila['DIRECCION'];
   }
 
+  function getEditPersona($id){
+    $con = conectarse();
+    mysql_set_charset("utf8",$con);
+    $query = "SELECT * FROM personal_acreditado WHERE ID_ACREDITADO='$id'";
+    $resultado = mysql_query($query, $con);
+    $fila = mysql_fetch_array($resultado);
+    mysql_close($con);
+    return $fila['ID_SEXO'] . "%$" . $fila['ID_TIPO_PASE'] . "%$" . $fila['ID_ORDEN_CONTRATO'] . "%$" . $fila['ID_TIPO_TURNO'] . "%$" . $fila['ID_GRUPO_SANGUINEO'] . "%$" . $fila['RUT'] . "%$" . $fila['NOMBRES'] . "%$" . $fila['APELLIDOS'] . "%$" . $fila['CARGO'] . "%$" . $fila['F_NACIMIENTO'] . "%$" . $fila['NACIONALIDAD'] . "%$" . $fila['VISA'] . "%$" . $fila['F_ACREDITACION'] . "%$" . $fila['PROCEDENCIA'] . "%$" . $fila['ALERGIAS'] . "%$" . $fila['ID_COMUNA'] . "%$" . $fila['FONO_EMERGENCIA'] . "%$" . $fila['DIRECCION'] . "%$" . $fila['F_REGISTRO'];
+  }
+
   function getVerEmpresaContratista($id){
     $con = conectarse();
     mysql_set_charset("utf8",$con);
@@ -353,7 +382,7 @@
     $resultado = mysql_query($query, $con);
     $fila = mysql_fetch_array($resultado);
     mysql_close($con);
-    return $fila['N_FANTASIA'] . "%$" . $fila['N_CONTACTO'] . "%$" . $fila['RUT'] . "%$" . $fila['MAIL_CONTACTO'] . "%$" . $fila['FONO'] . "%$" . $fila['REP'] . "%$" . $fila['OBSERVACION'] . "%$" . $fila['F_REGISTRO'] . "%$" . $fila['D_CASA_MATRIZ'] . "%$" . $fila['D_SUCURSAL'] . "%$" . $fila['MUTUALIDAD'];
+    return $fila['N_FANTASIA'] . "%$" . $fila['N_CONTACTO'] . "%$" . $fila['RUT'] . "%$" . $fila['MAIL_CONTACTO'] . "%$" . $fila['FONO'] . "%$" . $fila['REP'] . "%$" . $fila['OBSERVACION'] . "%$" . $fila['F_REGISTRO'] . "%$" . $fila['D_CASA_MATRIZ'] . "%$" . $fila['D_SUCURSAL'] . "%$" . $fila['MUTUALIDAD'] . "%$" . $fila['RESPONSABLE'] . "%$" . $fila['MAIL_RESPONSABLE'];
   }
 
   function getVerMandante($id){
@@ -454,7 +483,8 @@
     $sql = "SELECT * FROM empresa_contratista";
     mysql_set_charset("utf8",$con);
     $resultado = mysql_query($sql,$con);
-    echo '<select name="empresa" id="empresa" onchange="llenarContratos()">';
+    echo '<select name="empresa" id="empresa" onchange="llenarContratos()" required>';
+    echo '<option value="">Seleccionar...</option>';
     while($fila = mysql_fetch_array($resultado)){
       echo "<option value='" . $fila['ID_CONTRATISTA'] . "'>" . $fila['N_FANTASIA'] . "</option>";
     }
@@ -477,5 +507,33 @@
     $resultado = mysql_query($sql,$con);
     $fila = mysql_fetch_array($resultado);
     return $fila['RUT'];
+  }
+  
+    function getPasesDiarios(){
+    $con = conectarse();
+    mysql_set_charset("utf8",$con);
+    $sql="SELECT * FROM pasesDiarios";
+    $resultado = mysql_query($sql,$con);
+    while($row = mysql_fetch_array($resultado)){
+      $hoy = date('y/m/d');
+      $fechaInicio = date('y/m/d',strtotime($row['fechaInicio']));
+      $fechaTermino = date('y/m/d',strtotime($row['fechaTermino']));
+      echo "
+          <tr>
+              <td>".$row['id'] . "</td>
+              <td>".$row['nombre'] . "</td>
+              <td>".$row['rut'] . "</td>
+              <td>".$row['empresa'] . "</td>
+              <td>".date('d/m/y',strtotime($row['fechaInicio'])) . "</td>
+              <td>".date('d/m/y',strtotime($row['fechaTermino'])). "</td>";
+      if($fechaInicio<= $hoy && $hoy<=$fechaTermino){
+        echo "<td><span style='cursor:default' class='btn btn-xs btn-success'>activo</span></td>";        
+      }else{
+        echo "<td><span style='cursor:default' class='btn btn-xs btn-danger'>inactivo</span></td>";     
+      }
+      echo "<td><a class='btn btn-xs btn-danger' href='eliminarPases.php?id=".$row['id']."' role='button'>eliminar</a></td>";
+      echo "</tr>";
+    }
+    mysql_close($con);
   }
 ?>

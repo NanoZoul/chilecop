@@ -12,11 +12,13 @@ if($_SESSION['nombreUsuario']){
     <?php 
     include('php/consultasAcreditacion.php');
     tituloPanel();
-    if(isset($_GET['id'])){
+    if(isset($_SESSION["idContratista"])){
+      $id = $_SESSION["idContratista"];
+    }else{
       $id = $_GET['id'];
     }
     $contenido = getVerEmpresaContratista($id);
-    list($n_fantasia,$n_contacto,$rut,$mail_contacto,$fono,$rep,$observacion,$f_registro,$d_casa_matriz,$d_sucursal,$mutualidad) = explode("%$", $contenido);
+    list($n_fantasia,$n_contacto,$rut,$mail_contacto,$fono,$rep,$observacion,$f_registro,$d_casa_matriz,$d_sucursal,$mutualidad,$responsable,$emailresponsable) = explode("%$", $contenido);
     $nombre1="nombre_del_archivo.pdf"
     ?>
 
@@ -35,63 +37,7 @@ if($_SESSION['nombreUsuario']){
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>
-      $(function(){
-        $("input[name='file']").on("change", function(){
-          var formData = new FormData($("#formulario")[0]);
-          var ruta = "php/addDocumento.php";
-          $.ajax({
-            url: ruta,
-            type: "POST",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(datos)
-            {
-              $("#respuesta").html(datos);
-            }
-          });
-        });
-      });
-    </script>
-    <script>
-      $(function(){
-        $("input[name='file2']").on("change", function(){
-          var formData = new FormData($("#formulario2")[0]);
-          var ruta = "php/addDocumento.php";
-          $.ajax({
-            url: ruta,
-            type: "POST",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(datos)
-            {
-              $("#respuesta2").html(datos);
-            }
-          });
-        });
-      });
-    </script>
-    <script>
-      $(function(){
-        $("input[name='file3']").on("change", function(){
-          var formData = new FormData($("#formulario3")[0]);
-          var ruta = "php/addDocumento.php";
-          $.ajax({
-            url: ruta,
-            type: "POST",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(datos)
-            {
-              $("#respuesta3").html(datos);
-            }
-          });
-        });
-      });
-    </script>
+   
   </head>
   <body>
     <div class="container-fluid display-table">
@@ -134,6 +80,7 @@ if($_SESSION['nombreUsuario']){
               <div class="form-wrapper">
               <p>Ingrese cada uno de los datos para agregar la empresa contratista.</p>
                 <form action="php/editContratista.php" method="post">
+                <input type="hidden" name="id" value="<?php echo $id;?>">
                   <div class="row">
                     <div class="col-md-4 col-lg-4">
                       <div class="form-group">
@@ -151,12 +98,20 @@ if($_SESSION['nombreUsuario']){
                       <div class="form-group">
                           <label class="sr-only">Fono</label>
                           <input type="text" class="form-control" id="title" placeholder="Fono" name="fono" value="<?php echo $fono; ?>" required>
-                      </div>                        
+                      </div>    
+                      <div class="form-group">
+                        <label class="">Responsable</label>
+                        <input type="text" class="form-control" id="title" placeholder="Responsable" name="responsable" value="<?php echo $responsable; ?>" required>
+                      </div>
+                      <div class="form-group">
+                        <label class="">E-mail Responsable</label>
+                        <input type="email" class="form-control" id="title" placeholder="E-mail Responsable" name="emailresponsable" value="<?php echo $emailresponsable; ?>" required>
+                      </div>                    
                     </div>
                     <div class="col-md-4 col-lg-4">
                       <div class="form-group">
                         <label class="sr-only">Representante</label>
-                        <input type="text" class="form-control" id="title" placeholder="Representante" name="representante" value="<?php echo $rep; ?>" >
+                        <input type="text" class="form-control" id="title" placeholder="Representante" name="representante" value="<?php echo $rep; ?>" required>
                       </div>
                       <div class="form-group">
                         <label class="sr-only">E-mail</label>
@@ -188,33 +143,6 @@ if($_SESSION['nombreUsuario']){
                         <button type="submit" class="btn btn-warning pull-right"> Editar Contratista</button>
                       </div>
                     </div>
-                  </div>
-                </form>
-                <form method="post" id="formulario" enctype="multipart/form-data">
-                  <label>Documento 1</label>
-                  <div class="form-group">
-                     <span class="btn btn-default btn-file">                            
-                        Subir Archivo <input type="file" name="file">
-                     </span>
-                     <label id="respuesta" class=""><?php echo "<a href='http://www.chilecop.cl/acreditacion/php/dctos/". $nombre1 ."'>" . $nombre1 . "</a>"; ?></label>
-                  </div>
-                </form>
-                <form method="post" id="formulario2" enctype="multipart/form-data">
-                  <label>Documento 2</label>
-                  <div class="form-group">
-                     <span class="btn btn-default btn-file">                            
-                        Subir Archivo <input type="file" name="file2">
-                     </span>
-                     <label id="respuesta2" class=""><?php echo "<a href='http://www.chilecop.cl/acreditacion/php/dctos/". $nombre2 ."'>" . $nombre2 . "</a>"; ?></label>
-                  </div>
-                </form>
-                <form method="post" id="formulario3" enctype="multipart/form-data">
-                  <label>Documento 3</label>
-                  <div class="form-group">
-                     <span class="btn btn-default btn-file">                            
-                        Subir Archivo <input type="file" name="file3">
-                     </span>
-                     <label id="respuesta3" class=""><?php echo "<a href='http://www.chilecop.cl/acreditacion/php/dctos/". $nombre3 ."'>" . $nombre3 . "</a>"; ?></label>
                   </div>
                 </form>
               </div>

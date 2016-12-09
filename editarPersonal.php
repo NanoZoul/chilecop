@@ -9,21 +9,18 @@ if($_SESSION['nombreUsuario']){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <?php 
+ <?php 
     include('php/consultasAcreditacion.php');
     if(isset($_GET['id'])){
       $id = $_GET['id'];
     }
     tituloPanel();
-	$contenido = getVerPersona2($id);
-    list($rut,$nombres,$apellidos,$cargo,$f_nacimiento,$procedencia,$alergias,$fono_emergencia,$direccion) = explode("%$", $contenido);
+	  $contenido = getEditPersona($id);
+    list($sexo,$tipopase,$contrato,$turno,$sangre,$rut,$nombres,$apellidos,$cargo,$f_nacimiento,$nacionalidad,$visa,$facreditacion,$procedencia,$alergias,$comuna,$fono_emergencia,$direccion,$fregistro) = explode("%$", $contenido);
 	?>
 
     <!-- Bootstrap -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="vendor/chosen/chosen.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/font-awesome-4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/summernote/summernote.css">
     <link rel="stylesheet" type="text/css" href="css/estilosAdmin.css">
     <link rel="stylesheet" type="text/css" href="css/new-article.css">
     
@@ -34,25 +31,6 @@ if($_SESSION['nombreUsuario']){
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>
-      $(function(){
-        $("input[name='file']").on("change", function(){
-          var formData = new FormData($("#formulario")[0]);
-          var ruta = "imagen-ajax.php";
-          $.ajax({
-            url: ruta,
-            type: "POST",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(datos)
-            {
-              $("#respuesta").html(datos);
-            }
-          });
-        });
-      });
-    </script>
   </head>
   <body>
     <div class="container-fluid display-table">
@@ -89,25 +67,25 @@ if($_SESSION['nombreUsuario']){
 
           <div id="content">
             <header>
-              <h2 class="page_title">Ingresar Trabajador</h2>
+              <h2 class="page_title">Editar Trabajador</h2>
             </header>
             <div class="content-inner">
               <div class="form-wrapper">
-              <p>Ingrese cada uno de los datos para agregar al trabajador al sistema. Todos los datos son requeridos.</p>
-                <form action="php/addTrabajador.php" method="post">
-                  <input type="hidden" name="idcontrato" value="<?php echo $id; ?>">
+              <p>Modifique los datos necesarios para actualizar al trabajador en el sistema. Todos los datos son requeridos.</p>
+                <form action="php/editarTrabajador.php" method="post">
+                  <input type="hidden" name="id" value="<?php echo $id; ?>">
                   <div class="row">
                     <div class="col-md-4 col-lg-4">
                       <div class="form-group">
-                        <label class="sr-only">Rut</label>
+                        <label class="">Rut</label>
                         <input type="text" class="form-control" id="title" placeholder="Rut" name="rut" value="<?php echo $rut; ?>" required>
                       </div>
                       <div class="form-group">
-                        <label class="sr-only">Nombre</label>
+                        <label class="">Nombre</label>
                         <input type="text" class="form-control" id="title" placeholder="Nombre" name="nombre" value="<?php echo $nombres; ?>" required>
                       </div>
                       <div class="form-group">
-                        <label class="sr-only">Apellidos</label>
+                        <label class="">Apellidos</label>
                         <input type="text" class="form-control" id="title" placeholder="Apellidos" name="apellidos" value="<?php echo $apellidos; ?>" required>
                       </div>
                       <div class="form-group">
@@ -116,60 +94,56 @@ if($_SESSION['nombreUsuario']){
                       </div>
                       <div class="form-group">
                           <label class="">Sexo</label><br>
-                          <input type="radio" name="sexo" value="1"> Masculino<br>
-                          <input type="radio" name="sexo" value="2"> Femenino<br>
+                          <input type="radio" name="sexo" value="1" <?php if($sexo==1)echo 'checked' ?>> Masculino<br>
+                          <input type="radio" name="sexo" value="2" <?php if($sexo==2)echo 'checked' ?>> Femenino<br>
                       </div>
                       <div class="form-group">
-                        <label class="sr-only">Nacionalidad</label>
-                        <input type="text" class="form-control" id="title" placeholder="Nacionalidad" name="nacionalidad" required>
-                      </div>
-                      <div class="form-group">
-                        <label class="sr-only">Visa</label>
-                        <input type="text" class="form-control" id="title" placeholder="Visa" name="visa">
-                      </div>  
-                      <div class="form-group">
-                        <label class="sr-only">Procedencia</label>
-                        <input type="text" class="form-control" id="title" placeholder="Procedencia" name="procedencia" value="<?php echo $procedencia; ?>">
-                      </div>                                          
+                        <label class="">Nacionalidad</label>
+                        <input type="text" class="form-control" id="title" placeholder="Nacionalidad" name="nacionalidad" required value="<?php echo $nacionalidad; ?>">
+                      </div>                           
                     </div>
                     <div class="col-md-4 col-lg-4">   
                       <div class="form-group">
-                        <label class="sr-only">Cargo</label>
+                        <label class="">Cargo</label>
                         <input type="text" class="form-control" id="title" placeholder="Cargo" name="cargo" value="<?php echo $cargo; ?>" required>
                       </div>                   
                       <div class="form-group">
-                        <label class="sr-only">Dirección</label>
+                        <label class="">Dirección</label>
                         <input type="text" class="form-control" id="title" placeholder="Dirección" name="direccion" value="<?php echo $direccion; ?>" required>
                       </div>
                       <div class="form-group">
-                        <label class="sr-only">Fono</label>
+                        <label class="">Fono</label>
                         <input type="text" class="form-control" id="title" placeholder="Fono" name="fono" value="<?php echo $fono_emergencia; ?>" required>
-                      </div>
+                      </div>   
                       <div class="form-group">
-                        <label class="sr-only">Contacto</label>
-                        <input type="text" class="form-control" id="title" placeholder="Contacto" name="contacto">
-                      </div>    
+                        <label class="">Visa</label>
+                        <input type="text" class="form-control" id="title" placeholder="Visa" name="visa" value="<?php echo $visa; ?>">
+                      </div>  
+                      <div class="form-group">
+                        <label class="">Procedencia</label>
+                        <input type="text" class="form-control" id="title" placeholder="Procedencia" name="procedencia" value="<?php echo $procedencia; ?>">
+                      </div>  
                     </div>
                     <div class="col-md-4 col-lg-4">
                       <div class="form-group">
                         <label class="">Alergias</label>
-                        <textarea rows="4" cols="50" placeholder="Alergias" name="alergias" value="<?php echo $alergias; ?>" class="form-control"></textarea>
+                        <textarea rows="4" cols="50" placeholder="Alergias" name="alergias" class="form-control"><?php echo $alergias; ?></textarea>
                       </div>
                       <div class="form-group">
                         <label>Grupo Sanguíneo</label>
-                        <?php getSelect(grupo_sanguineo,id_grupo_sanguineo,descripcion); ?>
+                        <?php getSelect(grupo_sanguineo,id_grupo_sanguineo,descripcion,$sangre); ?>
                       </div>       
                       <div class="form-group">
                         <label>Tipo de Pase</label>
-                        <?php getSelect(tipo_pase,id_tipo_pase,descripcion); ?>
+                        <?php getSelect(tipo_pase,id_tipo_pase,descripcion,$tipopase); ?>
                       </div>    
                       <div class="form-group">
                         <label>Tipo de Turno</label>
-                        <?php getSelect(tipo_turno,id_tipo_turno,descripcion); ?>
+                        <?php getSelect(tipo_turno,id_tipo_turno,descripcion,$turno); ?>
                       </div>      
                                  
                       <div class="clearfix">
-                        <button type="submit" class="btn btn-primary pull-right"> Ingresar Trabajador</button>
+                        <button type="submit" class="btn btn-warning pull-right"> Editar Trabajador</button>
                       </div>
                     </div>
                   </div>

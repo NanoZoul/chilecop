@@ -116,7 +116,7 @@ if($_SESSION['nombreUsuario']){
               <div class="form-wrapper">              
                 <form action="php/editContrato.php" method="post">
                 <input type="hidden" name="id" value="<?php echo $id;?>">
-                  <div class="content-inner cuadroN2">
+                 <!--<div class="content-inner cuadroN2">
                     <div class="row">
                       <p>Seleccione el tipo de empresa para la cual entrega servicios.</p>
                       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -130,7 +130,7 @@ if($_SESSION['nombreUsuario']){
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div>-->
                   <p>Ingrese los datos que desee modificar para esta orden de contrato. Todos los datos son requeridos.</p><br>
                   <div class="row">
                     <div class="col-md-4 col-lg-4">                      
